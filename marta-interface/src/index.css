@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* Force Tailwind to always generate these classes, since they're
+   only referenced through runtime object lookups and the static
+   scanner can't trace them automatically. */
+@source inline("{bg,text,border,border-l}-{marta-gold,marta-red,marta-blue,marta-green}");
+@source inline("hover:bg-{marta-gold,marta-red,marta-blue,marta-green}/{10,20}");
+
+@theme {
+  --color-marta-gold:  #E4A820;
+  --color-marta-red:   #CE2939;
+  --color-marta-blue:  #009AD6;
+  --color-marta-green: #4BA54B;
+
+  --color-surface: #0f0f0f;
+  --color-card:    #1a1a1a;
+  --color-border:  #2a2a2a;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-surface);
+  color: #e5e5e5;
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
