@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import type { TrainData, LineColor } from '../types/train';
 import { LINE_COLORS, STATIONS } from "../types/train";
 import NavBar from '../components/NavBar';
@@ -24,7 +24,6 @@ const LINE_TEXT: Record<string, string> = {
 
 export default function LinesPage() {
   const { color } = useParams();
-  const navigate = useNavigate();
 
   const lineColor = color?.toUpperCase() as LineColor | undefined;
   const safeColor: LineColor = LINE_COLORS.includes(lineColor as LineColor)
@@ -101,17 +100,17 @@ export default function LinesPage() {
         {LINE_COLORS.map((lc) => {
           const isActive = safeColor === lc;
           return (
-            <button
+            <Link
               key={lc}
-              onClick={() => navigate(`/lines/${lc.toLowerCase()}`)}
+              to={`/lines/${lc.toLowerCase()}`}
               style={isActive
                 ? { backgroundColor: LINE_HEX[lc], color: LINE_TEXT[lc] }
                 : { backgroundColor: '#ffffff', color: '#1a1a1a' }
               }
-              className="flex-1 py-3 text-sm font-bold tracking-wide border-r border-gray-200 last:border-r-0 transition-colors"
+              className="flex-1 py-3 text-sm font-bold tracking-wide border-r border-gray-200 last:border-r-0 transition-colors text-center"
             >
               {lc.charAt(0) + lc.slice(1).toLowerCase()}
-            </button>
+            </Link>
           );
         })}
       </div>

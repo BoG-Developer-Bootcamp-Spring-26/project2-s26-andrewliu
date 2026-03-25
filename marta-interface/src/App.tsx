@@ -1,7 +1,14 @@
-import { BrowserRouter, Route, Routes } from 'react-router'
-import LinesPage from './pages/LinesPage'
-import About from './pages/About'
-import Home from './pages/Home'
+import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom';
+import LinesPage from './pages/LinesPage';
+import About from './pages/About';
+import Home from './pages/Home';
+
+// Wrapper forces a full remount of LinesPage when the color param changes,
+// preventing stale-state / race-condition bugs between fetches.
+function LinesPageWrapper() {
+  const { color } = useParams();
+  return <LinesPage key={color} />;
+}
 
 export default function App() {
   return (
@@ -9,7 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/lines/:color" element={<LinesPage />} />
+        <Route path="/lines/:color" element={<LinesPageWrapper />} />
       </Routes>
     </BrowserRouter>
   );

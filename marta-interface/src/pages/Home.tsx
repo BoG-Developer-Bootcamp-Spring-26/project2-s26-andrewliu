@@ -1,30 +1,57 @@
 import { Link } from 'react-router-dom';
-import { LINE_COLORS } from '../types/train';
+import martaLogo from '../assets/marta_logo.png';
 
-import martaLogo from '../assets/marta_logo.png'
+const LINE_INFO = [
+  { key: 'GOLD',  label: 'Gold Line',  path: '/lines/gold'  },
+  { key: 'RED',   label: 'Red Line',   path: '/lines/red'   },
+  { key: 'GREEN', label: 'Green Line', path: '/lines/green' },
+  { key: 'BLUE',  label: 'Blue Line',  path: '/lines/blue'  },
+];
 
 export default function Home() {
   return (
-    <div>
-      <header>
-        <span>MARTA</span>
-        <Link to="/about">About</Link>"
+    <div className="min-h-screen bg-white flex flex-col">
+
+      {/* Header: MARTA centered, About top-right */}
+      <header className="flex items-center px-6 py-4 border-b border-gray-200">
+        <div className="flex-1" />
+        <h1 className="flex-1 text-center text-2xl font-black tracking-widest text-gray-900">MARTA</h1>
+        <div className="flex-1 flex justify-end">
+          <Link to="/about" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+            About MARTA
+          </Link>
+        </div>
       </header>
 
-      <main>
-        <h1>View Routes & Schedule</h1>
-        <p>Select a line to see live arrivals</p>
-        
+      {/* Two-column layout: links left, image right */}
+      <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12 px-12 py-12 items-start">
+
         <div>
-          {LINE_COLORS.map((lc) => (
-            <Link key={lc} to={`/lines/${lc.toLowerCase()}`}>
-              {lc.charAt(0) + lc.slice(1).toLowerCase()} Line
-            </Link>
-          ))}
+          <h2 className="text-4xl font-black uppercase tracking-tight text-gray-900 mb-8">
+            View Routes Schedule
+          </h2>
+          <div>
+            {LINE_INFO.map((line) => (
+              <Link
+                key={line.key}
+                to={line.path}
+                className="block py-4 border-b border-gray-300 text-base font-bold text-gray-900 hover:text-gray-500 transition-colors"
+              >
+                {line.label}
+              </Link>
+            ))}
+          </div>
         </div>
+
+        <div className="hidden lg:block">
+          <img
+            src={martaLogo}
+            alt="MARTA logo"
+            className="w-full object-contain"
+          />
+        </div>
+
       </main>
-      
-      {/* <button><img src={martaLogo} alt="MARTA Logo" />Home</button> */}
     </div>
-  )
+  );
 }
