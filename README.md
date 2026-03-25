@@ -23,7 +23,7 @@ In this project, you'll be creating a frontend that graphically displays train i
     plugins: [
       react(),
       tailwindcss(),
-    ],
+    ],border: This draws a border around windows. If enabled, this also takes up space and prevents the window from touching the screen edge.
   })
   ```
   3. Add `@import "tailwindcss;` to the top of `main.css`. This will add tailwind to your entire application (and components), not just the `App.tsx` page.
