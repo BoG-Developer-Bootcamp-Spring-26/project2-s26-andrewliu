@@ -7,7 +7,6 @@ import TrainList from '../components/TrainList';
 
 const API_BASE = "/api";
 
-// Hex values used in inline styles — bypasses Tailwind static analysis entirely
 const LINE_HEX: Record<string, string> = {
   GOLD:  "#E4A820",
   RED:   "#CE2939",
@@ -63,8 +62,7 @@ export default function LinesPage() {
       setStations(list.length > 0 ? list : STATIONS[line]);
     } catch (err) {
       console.error('fetchStations failed:', err);
-      // Fall back to hardcoded list
-      setStations(STATIONS[line]);
+      setStations(STATIONS[line]); //fallback to hard coded
     }
   }
 

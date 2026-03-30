@@ -12,7 +12,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
 
-      {/* Header: MARTA centered, About top-right */}
       <header className="flex items-center px-6 py-4 border-b border-gray-200">
         <div className="flex-1" />
         <h1 className="flex-1 text-center text-2xl font-black tracking-widest text-gray-900">MARTA</h1>
@@ -23,7 +22,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Two-column layout: links left, image right */}
       <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12 px-12 py-12 items-start">
 
         <div>
